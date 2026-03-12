@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2학년 3반 노래 신청함</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+
+    <main class="container">
+      <section class="hero card">
+        <div class="hero-top">
+          <p class="badge">🎵 2학년 3반 플레이리스트</p>
+          {% if current_admin %}
+          <form method="post" action="{{ url_for('admin_logout') }}">
+            <button class="ghost-button" type="submit">관리자 로그아웃</button>
+          </form>
+          {% endif %}
+        </div>
+        <h1>우리 반 노래 신청함</h1>
+        <p class="description">
+          듣고 싶은 노래를 자유롭게 남겨주세요. 쉬는시간과 점심시간에 함께 들을 수
+          있는 분위기 좋은 곡이면 더 좋아요.
+        </p>
+        <div class="meta-row">
+          <span>오늘 날짜: {{ now.strftime('%Y-%m-%d') }}</span>
+          <span>최근 신청곡: {{ recent_requests|length }}개 표시</span>
+          {% if current_admin %}
+          <span>현재 관리자: {{ current_admin.username }} / {{ current_admin.role }}</span>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="grid">
+        <section class="card form-card">
+          <h2>노래 신청하기</h2>
+          <form method="post" action="{{ url_for('submit_request') }}">
+            <label>
+              이름
+              <input name="student_name" placeholder="예: 김민수" required maxlength="20" />
+            </label>
+            <label>
+              노래 제목
+              <input name="song_title" placeholder="예: Hype Boy" required maxlength="60" />
+            </label>
+            <label>
+              가수
+              <input name="artist" placeholder="예: NewJeans" required maxlength="60" />
+            </label>
+            <label>
+              한마디 (선택)
+              <textarea
+                name="message"
+                placeholder="예: 같이 들으면 분위기 좋아질 것 같아요!"
+                rows="3"
+                maxlength="120"
+              ></textarea>
+            </label>
+            <button type="submit">신청 보내기</button>
+          </form>
+        </section>
+
+        <section class="card form-card admin-card">
+          <h2>관리자 탭</h2>
+          {% if current_admin %}
+          <p class="admin-ok">로그인됨: <strong>{{ current_admin.role }}</strong></p>
+          <p class="admin-help">리스트에서 선정 체크와 삭제를 할 수 있습니다.</p>
+          {% else %}
+          <form method="post" action="{{ url_for('admin_login') }}">
+            <label>
+              아이디
+              <input name="username" placeholder="예: sentimentaleunjun" required />
+            </label>
+            <label>
+              비밀번호
+              <input name="password" type="password" required />
+            </label>
+            <button type="submit">관리자 로그인</button>
+          </form>
+          {% if login_error %}
+          <p class="admin-error">아이디 또는 비밀번호가 올바르지 않아요.</p>
+          {% endif %}
+          {% endif %}
+        </section>
+      </section>
+
+      <section class="card list-card">
+        <h2>최근 신청곡</h2>
+        {% if recent_requests %}
+        <ul>
+          {% for item in recent_requests %}
+          <li class="song-item {% if item.selected %}selected-item{% endif %}">
+            <div class="song-top">
+              <strong>{{ item.song_title }}</strong>
+              <span>{{ item.artist }}</span>
+            </div>
+            <div class="song-bottom">
+              <span>{{ item.student_name }}</span>
+              <span>{{ item.submitted_at }}</span>
+            </div>
+            {% if item.message %}
+            <p class="message">"{{ item.message }}"</p>
+            {% endif %}
+
+            <div class="song-actions">
+              {% if item.selected %}
+              <span class="selected-badge">선정됨 ✅</span>
+              {% endif %}
+
+              {% if current_admin %}
+              <form method="post" action="{{ url_for('toggle_selected', request_id=item.id) }}">
+                <button type="submit" class="mini-button">
+                  {% if item.selected %}선정 해제{% else %}선정 체크{% endif %}
+                </button>
+              </form>
+              <form method="post" action="{{ url_for('delete_request', request_id=item.id) }}">
+                <button type="submit" class="mini-button danger">삭제</button>
+              </form>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty">아직 신청이 없어요. 첫 신청자가 되어보세요! ✨</p>
+        {% endif %}
+      </section>
+
+      <footer class="foot-note">
+        Render 배포 후 UptimeRobot에서 <code>/health</code> 경로를 5분 간격으로 체크하면
+        서버 상태를 안정적으로 모니터링할 수 있어요.
+      </footer>
+    </main>
+  </body>
+</html>

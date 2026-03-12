@@ -1,0 +1,350 @@
+:root {
+  --bg: #070b17;
+  --panel: rgba(14, 21, 45, 0.76);
+  --panel-strong: rgba(16, 25, 53, 0.92);
+  --text: #f3f6ff;
+  --muted: #9faed1;
+  --line: rgba(163, 182, 255, 0.22);
+  --accent: #8fa0ff;
+  --accent-2: #47d8c3;
+  --danger: #ff7c93;
+  --card-shadow: 0 20px 45px rgba(1, 5, 16, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 8% -10%, #273980 0%, transparent 40%),
+    radial-gradient(circle at 95% 95%, #135956 0%, transparent 34%), var(--bg);
+  letter-spacing: -0.01em;
+}
+
+.container {
+  width: min(1080px, 92%);
+  margin: 2.2rem auto 2.8rem;
+  position: relative;
+  z-index: 2;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01));
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px);
+}
+
+.hero {
+  padding: 2.1rem;
+  background-color: var(--panel);
+  margin-bottom: 1.2rem;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 0.42rem 0.84rem;
+  border-radius: 999px;
+  color: #dde4ff;
+  border: 1px solid rgba(176, 190, 255, 0.45);
+  background: rgba(125, 144, 255, 0.2);
+}
+
+.ghost-button {
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(173, 192, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  color: #dce5ff;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+h1 {
+  margin: 0.88rem 0 0.75rem;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.description {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.68;
+}
+
+.meta-row {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #cfd9f6;
+}
+
+.meta-row span {
+  padding: 0.38rem 0.65rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.form-card,
+.list-card {
+  padding: 1.35rem;
+  background: var(--panel-strong);
+}
+
+.admin-card {
+  border-color: rgba(93, 224, 197, 0.28);
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.18rem;
+}
+
+form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+label {
+  display: grid;
+  gap: 0.42rem;
+  font-size: 0.93rem;
+  color: var(--muted);
+}
+
+input,
+textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(174, 188, 255, 0.23);
+  background: rgba(6, 12, 28, 0.72);
+  color: var(--text);
+  padding: 0.78rem 0.9rem;
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7181b1;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(138, 170, 255, 0.9);
+  box-shadow: 0 0 0 3px rgba(86, 126, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  margin-top: 0.25rem;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  color: #07101f;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 24px rgba(71, 124, 255, 0.34);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.admin-ok {
+  margin: 0;
+  color: #c6ffe7;
+}
+
+.admin-help {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.admin-error {
+  margin: 0;
+  color: #ffc5d1;
+}
+
+.list-card {
+  margin-top: 1.2rem;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.72rem;
+}
+
+.song-item {
+  border-radius: 13px;
+  border: 1px solid rgba(157, 176, 244, 0.23);
+  background: rgba(8, 14, 30, 0.72);
+  padding: 0.88rem;
+}
+
+.selected-item {
+  border-color: rgba(84, 229, 191, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(84, 229, 191, 0.3);
+}
+
+.song-top,
+.song-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.song-top strong {
+  font-weight: 700;
+}
+
+.song-top span {
+  color: #cbdbff;
+}
+
+.song-bottom {
+  margin-top: 0.38rem;
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.message {
+  margin: 0.5rem 0 0;
+  padding-top: 0.48rem;
+  border-top: 1px dashed rgba(180, 197, 255, 0.25);
+  color: #dbe4ff;
+  font-size: 0.92rem;
+}
+
+.song-actions {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.selected-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #07271f;
+  background: linear-gradient(120deg, #6ef2cb, #b9f5e5);
+  padding: 0.32rem 0.62rem;
+}
+
+.mini-button {
+  margin: 0;
+  padding: 0.42rem 0.68rem;
+  font-size: 0.8rem;
+  border-radius: 9px;
+}
+
+.mini-button.danger {
+  background: linear-gradient(120deg, var(--danger), #ff9da7);
+  box-shadow: 0 8px 18px rgba(255, 104, 132, 0.35);
+}
+
+.empty {
+  color: var(--muted);
+}
+
+.foot-note {
+  margin-top: 1rem;
+  text-align: center;
+  color: #bdcaee;
+  font-size: 0.89rem;
+}
+
+code {
+  border: 1px solid rgba(152, 171, 238, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.15rem 0.42rem;
+  border-radius: 7px;
+}
+
+.aurora {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(84px);
+  opacity: 0.36;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora-1 {
+  width: 320px;
+  height: 320px;
+  left: -40px;
+  top: -50px;
+  background: #768cff;
+}
+
+.aurora-2 {
+  width: 360px;
+  height: 360px;
+  right: -70px;
+  bottom: -60px;
+  background: #1cd3c8;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero,
+  .form-card,
+  .list-card {
+    padding: 1.2rem;
+  }
+
+  .hero-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
