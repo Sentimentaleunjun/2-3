@@ -7,6 +7,7 @@
   --line: rgba(163, 182, 255, 0.22);
   --accent: #8fa0ff;
   --accent-2: #47d8c3;
+  --danger: #ff7c93;
   --card-shadow: 0 20px 45px rgba(1, 5, 16, 0.55);
 }
 
@@ -46,6 +47,13 @@ body {
   margin-bottom: 1.2rem;
 }
 
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: center;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -57,6 +65,16 @@ body {
   color: #dde4ff;
   border: 1px solid rgba(176, 190, 255, 0.45);
   background: rgba(125, 144, 255, 0.2);
+}
+
+.ghost-button {
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(173, 192, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  color: #dce5ff;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.85rem;
 }
 
 h1 {
@@ -97,6 +115,10 @@ h1 {
 .list-card {
   padding: 1.35rem;
   background: var(--panel-strong);
+}
+
+.admin-card {
+  border-color: rgba(93, 224, 197, 0.28);
 }
 
 h2 {
@@ -168,6 +190,25 @@ button:active {
   transform: translateY(0);
 }
 
+.admin-ok {
+  margin: 0;
+  color: #c6ffe7;
+}
+
+.admin-help {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
+.admin-error {
+  margin: 0;
+  color: #ffc5d1;
+}
+
+.list-card {
+  margin-top: 1.2rem;
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -176,11 +217,16 @@ ul {
   gap: 0.72rem;
 }
 
-li {
+.song-item {
   border-radius: 13px;
   border: 1px solid rgba(157, 176, 244, 0.23);
   background: rgba(8, 14, 30, 0.72);
   padding: 0.88rem;
+}
+
+.selected-item {
+  border-color: rgba(84, 229, 191, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(84, 229, 191, 0.3);
 }
 
 .song-top,
@@ -210,6 +256,37 @@ li {
   border-top: 1px dashed rgba(180, 197, 255, 0.25);
   color: #dbe4ff;
   font-size: 0.92rem;
+}
+
+.song-actions {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.selected-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #07271f;
+  background: linear-gradient(120deg, #6ef2cb, #b9f5e5);
+  padding: 0.32rem 0.62rem;
+}
+
+.mini-button {
+  margin: 0;
+  padding: 0.42rem 0.68rem;
+  font-size: 0.8rem;
+  border-radius: 9px;
+}
+
+.mini-button.danger {
+  background: linear-gradient(120deg, var(--danger), #ff9da7);
+  box-shadow: 0 8px 18px rgba(255, 104, 132, 0.35);
 }
 
 .empty {
@@ -264,5 +341,10 @@ code {
   .form-card,
   .list-card {
     padding: 1.2rem;
+  }
+
+  .hero-top {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
