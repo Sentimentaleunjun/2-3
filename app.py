@@ -9,12 +9,12 @@ app = Flask(__name__)
 app.secret_key = "song-request-secret-key-change-this"
 
 ADMIN_USERS: Dict[str, Dict[str, str]] = {
-    "sentimentaleunjun": {"password": "A292513a!!", "role": "부회장(관리자)"},
+    "sentimentaleunjun": {"password": "A292513a!!", "role": "감성은준(관리자)"},
+    "vicepresident23": {"password": "A292513a!!", "role": "키큰민서(관리자)"},
     "teacher23": {"password": "A292513a!!", "role": "선생님(관리자)"},
-    "president23": {"password": "A292513a!!", "role": "회장(관리자)"},
+    "president23": {"password": "A292513a!!", "role": "지우지우(관리자)"},
 }
 
-# In-memory storage for simple school use. Replace with a database for production.
 requests_store: List[Dict[str, Any]] = []
 next_request_id = 1
 
@@ -127,6 +127,14 @@ def health_check():
             "selected_count": selected_count,
         }
     )
+
+@app.get("/감성은준")
+def 감성은준():
+    return "<h1>안녕 감성은준</h1>"
+
+@app.get("/민호야")
+def 민호야():
+    return "<h1>그만쳐먹어ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ 민호야</h1>"
 
 
 if __name__ == "__main__":
